@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <style>
+        body{
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Stop Watch</h3>
+        <h1 id="time">00:00</h1>
+        <button onclick="startClock()">Start</button>
+        <button onclick="stopClock()">Stop</button>
+        <button onclick="resetClock()">Reset</button>
+    </div>
+
+
+    <script>
+        let secondsElapsed = 0;
+        let interval = null;
+        const time = document.getElementById("time")
+
+        function padStart(value) {
+            return String(value).padStart(2, "0")
+        }
+
+
+        function setTime() {
+            const minutes = Math.floor(secondsElapsed / 60);
+            const seconds = secondsElapsed % 60;
+            time.innerHTML = `${padStart(minutes)}:${padStart(seconds)}`;
+        }
+        function timer() {
+            secondsElapsed++;
+            setTime();
+        }
+
+
+        function startClock() {
+            if (interval) stopClock()
+            interval = setInterval(timer,1000)
+        }
+
+        function stopClock() {
+            clearInterval(interval)
+        } 
+
+        function resetClock() {
+            startClock();
+            stopClock();
+            secondsElapsed = 0;
+            setTime()
+        }
+    </script>
+</body>
+</html>
