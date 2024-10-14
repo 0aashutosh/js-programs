@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body{
+            /* overflow: hidden; */
+            background: linear-gradient(#f4f4ed, white);
+        }
+        .container{
+            border:  1px solid black;
+
+            width: 95%;
+            height: 100vh;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculator{
+            border: 1px solid black;
+
+            width: 370px;
+            margin: auto;
+            border-radius: 2px;
+            background: #f2f2f2;
+            padding:  15px 15px 20px 20px;
+            box-shadow: 0px 2px 4px 0px;
+        }
+        #userInput{
+            box-sizing: border-box;
+            width: 100%;
+            padding: 40px 5px;
+            background: whitesmoke;
+            text-align: right;
+            direction: ltr;
+            outline: none;
+            border: none;
+        }
+        .btn{
+            width: 24%;
+            height: 45px;
+            border-radius: 1px;
+            border: none;
+            outline: none;
+            margin-top: 3px;
+            background: whitesmoke;
+        }
+        .btnEqual{
+            width: 99.2%;
+            height: 45px;
+            border-radius: 1px;
+            border: none;
+            outline: none;
+            margin-top: 3px;
+            background: whitesmoke;
+        }
+        .btn:hover, .btnEqual:hover{
+            background-color: rgba(128,128,128,0.1);
+        }
+        @media(max-width:480px){
+            .btn{
+                width: 23.4%;
+            }
+        }
+        @media(max-width:320px){
+            .btn{
+                width: 23%;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <input id="userInput" placeholder="0">
+            <br>
+            <button class="btn" onclick="press(1)">1</button>
+            <button class="btn" onclick="press(2)">2</button>
+            <button class="btn" onclick="press(3)">3</button>
+            <button style="background-color: #ffb84d;" 
+            class="btn" onclick="press('+')">+</button>
+            <br>
+            <button class="btn" onclick="press(4)">4</button>
+            <button class="btn" onclick="press(5)">5</button>
+            <button class="btn" onclick="press(6)">6</button>
+            <button style="background-color: #ffcc80;" 
+            class="btn" onclick="press('-')">-</button>
+            <br>
+            <button class="btn" onclick="press(7)">7</button>
+            <button class="btn" onclick="press(8)">8</button>
+            <button class="btn" onclick="press(9)">9</button>
+            <button style="background-color: #ffe0b3;" 
+            class="btn" onclick="press('*')">*</button>
+            <br>
+            <button class="btn" onclick="press('.')">.</button>
+            <button class="btn" onclick="press(0)">0</button>
+            <button class="btn" onclick="erase()">C</button>
+            <button style="background-color: #fff5e6;" 
+            class="btn" onclick="press('/')">/</button>
+            <br>
+            <button class="btnEqual" onclick="equal()">=</button>
+
+        </div>
+    </div>
+
+    <script>
+        const userInput = document.getElementById("userInput");
+        var expression = '';
+
+        function press(num){
+            expression += num;
+            userInput.value = expression;
+        }
+        function equal(){
+            userInput.value = eval(expression);
+            expression='';
+        }
+        function erase(){
+            expression = '';
+            userInput.value = expression;
+        }
+
+    </script>
+    
+</body>
+</html>
